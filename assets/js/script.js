@@ -5,15 +5,24 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 var createTaskHandler = function(event) {
     // prevents the browser from running default software on form submition.
     event.preventDefault();
+    // creates a variable that is assigned the value of a specific input element's input.
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    var taskTypeInput = document.querySelector("select[name='task-type']").value;
+    console.log(taskTypeInput);
     // creates a DOM object and assigns it to a newly created li element.
     var listItemEl = document.createElement("li");
-    // assigns the class task-item to the DOM object listItemEl.
     listItemEl.className = "task-item";
-    // assigns a text string to the DOM object listItemEl.
-    listItemEl.textContent = "This is a new task";
-    // appends a child element to the DOM object tasksToDoEl, which
-    // references the element ul in html, by passing the DOM object 
-    // listItemEl through the appendChild method.
+    
+    // create div to hold task info and add to list item
+    var taskInfoEl = document.createElement("div");
+    // give it a class name
+    taskInfoEl.className = "task-info";
+    // add HTML content to div
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
+    
+    listItemEl.appendChild(taskInfoEl);
+    
+    // add entire list item to list
     tasksToDoEl.appendChild(listItemEl);
 }
 
